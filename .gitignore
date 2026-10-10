@@ -1,0 +1,9 @@
+node_modules
+.next
+next-env.d.ts
+*.tsbuildinfo
+.DS_Store
+.claude/
+# Higgsfield PNG sources (170 MB) stay local; optimized WebP versions live in public/images
+assets-src/higgsfield/
+.env*
