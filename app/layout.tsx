@@ -7,11 +7,29 @@ import './globals.css';
 const sora = localFont({ src: './fonts/Sora-latin.woff2', weight: '300 600', variable: '--font-sora', display: 'swap', preload: true });
 const manrope = localFont({ src: './fonts/Manrope-latin.woff2', weight: '400 700', variable: '--font-manrope', display: 'swap', preload: false });
 
-const title = 'TOP Advertising | Eventos y Producción en Panamá';
-const description = 'Creamos eventos, montajes corporativos, activaciones BTL, lanzamientos y experiencias visuales para marcas y empresas en Panamá.';
+const title = 'TOP Advertising — Experiencias de marca que dejan huella';
+const description = 'Eventos, montajes y activaciones de marca en Panamá.';
+
+/**
+ * Absolute base for canonical / og:url / og:image.
+ * Set NEXT_PUBLIC_SITE_URL to the confirmed production domain; on Vercel it falls back
+ * to the production deployment domain, otherwise to SITE.url.
+ */
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ||
+  (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : SITE.url);
+
+/** Real photo of the project delivered for Changan (stand, motor show), cropped to 1200×630. */
+const ogImage = {
+  url: '/og/top-advertising-og.jpg',
+  width: 1200,
+  height: 630,
+  type: 'image/jpeg',
+  alt: 'Proyecto realizado para Changan: equipo de imagen de TOP Advertising en el stand de un motor show',
+};
 
 export const metadata: Metadata = {
-  metadataBase: new URL(SITE.url),
+  metadataBase: new URL(siteUrl),
   title,
   description,
   alternates: { canonical: '/' },
@@ -22,9 +40,9 @@ export const metadata: Metadata = {
     siteName: SITE.name,
     title,
     description,
-    images: [{ url: '/projects/changan/changan-05.webp', width: 1080, height: 1112, alt: 'Equipo de imagen de TOP Advertising en el stand de Changan' }],
+    images: [ogImage],
   },
-  twitter: { card: 'summary_large_image', title, description, images: ['/projects/changan/changan-05.webp'] },
+  twitter: { card: 'summary_large_image', title, description, images: [ogImage] },
   robots: { index: true, follow: true },
 };
 
