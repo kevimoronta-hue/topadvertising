@@ -21,11 +21,11 @@ const siteUrl =
 
 /** Real photo of the project delivered for Changan (stand, motor show), cropped to 1200×630. */
 const ogImage = {
-  url: '/og/top-advertising-og.jpg',
+  url: '/og/top-advertising-og-v2.jpg',
   width: 1200,
   height: 630,
   type: 'image/jpeg',
-  alt: 'Proyecto realizado para Changan: equipo de imagen de TOP Advertising en el stand de un motor show',
+  alt: 'TOP Advertising · Proyecto realizado para Changan: equipo de imagen en el stand de un motor show',
 };
 
 export const metadata: Metadata = {
