@@ -4,7 +4,7 @@
  */
 export const SITE = {
   name: 'TOP Advertising',
-  url: 'https://www.topadvertising.com.pa', // [DOMAINE À CONFIRMER]
+  url: 'https://www.topadvertisingpa.com',
   tagline: 'Eventos, producción y experiencias de marca en Panamá.',
   country: 'Panamá',
   /** Digits only, international format (e.g. 507XXXXXXXX). Empty = not provided yet. */

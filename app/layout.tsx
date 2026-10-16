@@ -11,13 +11,10 @@ const title = 'TOP Advertising — Experiencias de marca que dejan huella';
 const description = 'Eventos, montajes y activaciones de marca en Panamá.';
 
 /**
- * Absolute base for canonical / og:url / og:image.
- * Set NEXT_PUBLIC_SITE_URL to the confirmed production domain; on Vercel it falls back
- * to the production deployment domain, otherwise to SITE.url.
+ * Absolute base for canonical / og:url / og:image: the official domain (SITE.url),
+ * overridable with NEXT_PUBLIC_SITE_URL (e.g. for a staging deployment).
  */
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ||
-  (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : SITE.url);
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || SITE.url;
 
 /** Real photo of the project delivered for Changan (stand, motor show), cropped to 1200×630. */
 const ogImage = {
