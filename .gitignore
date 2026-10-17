@@ -7,3 +7,5 @@ next-env.d.ts
 # Higgsfield PNG sources (170 MB) stay local; optimized WebP versions live in public/images
 assets-src/higgsfield/
 .env*
+# Hero video sources (Unsplash masters, Kling clips): rebuild with scripts/build-hero-video.sh
+assets-src/hero-video/

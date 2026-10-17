@@ -37,8 +37,19 @@ export const LOGO = {
   alt: 'TOP Advertising',
 };
 
+/**
+ * Hero loop (5 × 2 s, locked-off Kling 3.0 clips from Unsplash photos + the real Changan
+ * photos, with a linear slide added in the montage),
+ * built by scripts/build-hero-video.sh, which reads this version. Bump it for a new
+ * montage so browsers never keep a stale file under the same name.
+ */
+export const HERO_VERSION = 'v2';
+
+const heroBase = `/videos/hero-top-${HERO_VERSION}`;
+
 export const HERO_MEDIA = {
-  // [VIDÉO HERO À FOURNIR] — optional loop over the main plane once the Higgsfield renders exist.
-  videoMobile: '', // /videos/top-hero-mobile.mp4 (9:16)
-  videoDesktop: '', // /videos/top-hero-desktop.mp4 (16:9)
+  videoMobile: `${heroBase}-mobile-9x16.mp4`,
+  videoDesktop: `${heroBase}-desktop-16x9.mp4`,
+  posterMobile: `${heroBase}-mobile-poster.webp`,
+  posterDesktop: `${heroBase}-desktop-poster.webp`,
 };

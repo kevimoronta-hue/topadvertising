@@ -132,14 +132,17 @@ p { margin: 0; }
 
 /* ---------- Hero: three planes ---------- */
 .hero { position: relative; background: var(--n950); padding-bottom: 56px; }
-.hero-back { position: absolute; inset: 0 0 auto 0; height: max(100svh, 640px); overflow: hidden; }
-.hero-back img, .hero-back video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 12%; }
-.hero-scrim { position: absolute; inset: 0 0 auto 0; height: max(100svh, 640px); background: linear-gradient(180deg, rgba(0, 17, 39, .55) 0%, rgba(0, 17, 39, 0) 13%, rgba(0, 17, 39, 0) 30%, rgba(0, 17, 39, .8) 46%, #001127 64%); }
-.hero-inner { position: relative; z-index: 2; min-height: max(100svh, 640px); display: flex; flex-direction: column; justify-content: flex-start; gap: 18px; padding-top: max(46svh, 300px); padding-bottom: 36px; }
-.hero .h1 { max-width: 11.5em; }
+/* Mobile: full-screen cinema loop, title + CTAs on a short bottom gradient */
+.hero-back { position: absolute; inset: 0 0 auto 0; height: 100svh; overflow: hidden; }
+.hero-back img, .hero-back video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
+.hero-scrim { position: absolute; inset: 0 0 auto 0; height: 100svh; background: linear-gradient(180deg, rgba(0, 17, 39, .5) 0%, rgba(0, 17, 39, 0) 14%, rgba(0, 17, 39, 0) 50%, rgba(0, 17, 39, .72) 76%, #001127 100%); }
+.hero-inner { position: relative; z-index: 2; display: flex; flex-direction: column; padding-bottom: 36px; }
+.hero-stage { min-height: 100svh; display: flex; flex-direction: column; justify-content: flex-end; gap: 22px; padding-bottom: calc(28px + env(safe-area-inset-bottom)); }
+.hero-more { display: flex; flex-direction: column; gap: 18px; padding-top: 8px; }
+.hero .h1 { max-width: 11em; font-size: clamp(36px, 10vw, 46px); }
 .hero-lead { font-size: 17px; line-height: 1.58; color: var(--si); max-width: 30em; }
-.hero-ctas { display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
-.hero-ctas .btn { width: 100%; }
+.hero-ctas { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.hero-ctas .btn { width: 100%; padding-left: 12px; padding-right: 12px; }
 .hero-proof { padding-top: 16px; border-top: 1px solid rgba(185, 194, 207, .14); font-size: 13px; letter-spacing: .02em; color: var(--mu); }
 .hero-plates { position: relative; z-index: 3; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-items: start; padding: 0 var(--gutter); }
 .plate { margin: 0; display: flex; flex-direction: column; gap: 10px; }
@@ -474,7 +477,13 @@ textarea.inp { min-height: 180px; resize: vertical; line-height: 1.55; }
    ========================================================================= */
 @media (min-width: 760px) {
   .manifesto .wrap { padding: 0 var(--gutter); }
-  .hero-back img { object-position: 62% 50%; }
+  .hero-back, .hero-scrim { height: max(100svh, 640px); }
+  .hero-inner { min-height: max(100svh, 640px); gap: 18px; }
+  .hero-stage, .hero-more { display: contents; }
+  .hero .h1 { font-size: clamp(44px, calc(20px + 5.8vw), 100px); }
+  .hero-lead { order: 1; }
+  .hero-ctas { order: 2; display: flex; margin-top: 8px; }
+  .hero-proof { order: 3; }
   .hero-scrim { background: linear-gradient(180deg, rgba(0, 17, 39, .55) 0%, rgba(0, 17, 39, 0) 18%), linear-gradient(90deg, rgba(0, 17, 39, .9) 0%, rgba(0, 17, 39, .5) 46%, rgba(0, 17, 39, 0) 72%), linear-gradient(0deg, #001127 0%, rgba(0, 17, 39, 0) 40%); }
   .hero-inner { justify-content: flex-end; padding-top: 140px; padding-bottom: 64px; }
   .hero .h1 { max-width: 10em; }
@@ -506,7 +515,7 @@ textarea.inp { min-height: 180px; resize: vertical; line-height: 1.55; }
 
   /* Hero: back plane + two front plates crossing into the manifesto */
   .hero { padding-bottom: 0; }
-  .hero-back, .hero-scrim, .hero-inner { height: auto; min-height: min(100vh, 980px); }
+  .hero-back, .hero-scrim, .hero-inner { height: auto; min-height: 100svh; }
   .hero-back { bottom: 0; height: auto; }
   .hero-scrim { bottom: 0; height: auto; }
   .hero-inner { padding-bottom: 128px; }
@@ -715,6 +724,16 @@ textarea.inp { min-height: 180px; resize: vertical; line-height: 1.55; }
   .final-ctas { margin-top: 10px; }
 }
 
+/* Phone held sideways: the title must not swallow the loop */
+@media (orientation: landscape) and (max-height: 540px) {
+  .hero-back, .hero-scrim, .hero-inner { height: 100svh; min-height: 0; }
+  .hero-inner { justify-content: flex-end; padding-top: 72px; padding-bottom: 22px; gap: 12px; }
+  .hero .h1 { max-width: 13em; font-size: clamp(28px, 8.5svh, 42px); }
+  .hero-lead { font-size: 15px; max-width: 34em; }
+  .hero-ctas { margin-top: 4px; }
+  .hero-proof { display: none; }
+}
+
 @media (min-width: 760px) and (max-width: 1079px) {
   .chg-grid, .agenda-grid { max-width: 680px; margin-left: auto; margin-right: auto; }
   .chg-main .img-btn { aspect-ratio: 4 / 5; }
@@ -741,8 +760,8 @@ textarea.inp { min-height: 180px; resize: vertical; line-height: 1.55; }
     .reveal-mask { animation: unmask linear both; animation-timeline: view(); animation-range: entry 0% entry 85%; }
     .reveal-mask img { animation: settle linear both; animation-timeline: view(); animation-range: entry 0% cover 45%; }
 
-    .hero-back img { animation: backDrift linear both; animation-timeline: scroll(root); animation-range: 0 100vh; }
-    .hero-inner { animation: recede linear both; animation-timeline: scroll(root); animation-range: 0 90vh; }
+    .hero-stage, .hero-inner { animation: recede linear both; animation-timeline: scroll(root); animation-range: 0 90vh; }
+    @media (max-width: 759px) { .hero-inner { animation: none; } }
 
     .chg-main-img img { animation: settleSlow linear both; animation-timeline: --chg; animation-range: entry 0% cover 60%; }
     .final-bg img { animation: settleSlow linear both; animation-timeline: view(); animation-range: entry 0% cover 70%; }
@@ -769,7 +788,6 @@ textarea.inp { min-height: 180px; resize: vertical; line-height: 1.55; }
   @keyframes bigIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
   .tr-light { animation: sweep 1200ms var(--ease-out) both; }
   .tr-big { animation: bigIn 600ms var(--ease-out) both; }
-  @keyframes backDrift { from { transform: scale(1.04); } to { transform: scale(1.12) translateY(5%); } }
   @keyframes recede { from { opacity: 1; transform: none; } to { opacity: .1; transform: translateY(-40px); } }
   @keyframes plateUp { from { transform: none; } to { transform: translateY(-90px); } }
   @keyframes plateUp2 { from { transform: none; } to { transform: translateY(-160px); } }
