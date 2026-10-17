@@ -144,11 +144,6 @@ p { margin: 0; }
 .hero-ctas { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .hero-ctas .btn { width: 100%; padding-left: 12px; padding-right: 12px; }
 .hero-proof { padding-top: 16px; border-top: 1px solid rgba(185, 194, 207, .14); font-size: 13px; letter-spacing: .02em; color: var(--mu); }
-.hero-plates { position: relative; z-index: 3; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-items: start; padding: 0 var(--gutter); }
-.plate { margin: 0; display: flex; flex-direction: column; gap: 10px; }
-.plate--b { margin-top: 44px; }
-.plate-img { position: relative; display: block; aspect-ratio: 4 / 5; overflow: hidden; border-radius: var(--r-img); box-shadow: 0 30px 60px -30px rgba(0, 0, 0, .7); }
-.plate figcaption { font-size: 11px; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--g); }
 
 /* ---------- Manifesto ---------- */
 .manifesto { position: relative; z-index: 1; background: var(--cr); color: var(--ink); padding: calc(var(--section) * .7) 0; }
@@ -490,7 +485,6 @@ textarea.inp { min-height: 180px; resize: vertical; line-height: 1.55; }
   .hero-lead { font-size: 19px; }
   .hero-ctas { flex-direction: row; align-items: center; gap: 14px; }
   .hero-ctas .btn { width: auto; }
-  .hero-plates { grid-template-columns: 1fr 1fr; max-width: 640px; margin-left: auto; gap: 20px; }
   .track > * { flex-basis: 58%; }
   .svc-track > *, .tr-list > * { flex-basis: 56%; }
   .chips { grid-template-columns: 1fr 1fr; }
@@ -513,19 +507,15 @@ textarea.inp { min-height: 180px; resize: vertical; line-height: 1.55; }
   .nav-in { height: 84px; }
   .nav-logo img { height: 46px; }
 
-  /* Hero: back plane + two front plates crossing into the manifesto */
+  /* Hero: full-bleed loop */
   .hero { padding-bottom: 0; }
   .hero-back, .hero-scrim, .hero-inner { height: auto; min-height: 100svh; }
   .hero-back { bottom: 0; height: auto; }
   .hero-scrim { bottom: 0; height: auto; }
-  .hero-inner { padding-bottom: 128px; }
+  .hero-inner { padding-bottom: 96px; }
   .hero .h1 { max-width: 9em; font-size: clamp(64px, 6vw, 92px); }
-  .hero-plates { position: absolute; right: var(--gutter); bottom: -150px; display: flex; align-items: flex-end; gap: 20px; max-width: none; margin: 0; padding: 0; }
-  .plate--a { width: clamp(220px, 20vw, 300px); }
-  .plate--b { width: clamp(160px, 14vw, 216px); margin: 0 0 128px; order: -1; }
-  .plate figcaption { color: var(--gd); }
 
-  .manifesto { padding: 220px 0 var(--section); }
+  .manifesto { padding: var(--section) 0; }
   .manifesto .wrap { padding: 0 var(--gutter); }
   .mani-card { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); min-height: 720px; }
   .mani-media { aspect-ratio: auto; grid-column: 1 / 7; grid-row: 1; min-height: 720px; }
@@ -743,7 +733,7 @@ textarea.inp { min-height: 180px; resize: vertical; line-height: 1.55; }
    SCROLL NARRATIVE (ScrollCraft) — one vocabulary:
    .rv          text rises 24px + fades in on entry
    .reveal-mask image unmasked from the bottom, inner image settles from 1.08
-   hero planes  back drifts slow, plates rise fast, copy recedes
+   hero         copy recedes as the page scrolls
    lines        gold rules / process line grow with scroll
    Entrance-only ranges so the final state is always the readable one.
    ========================================================================= */
@@ -751,9 +741,7 @@ textarea.inp { min-height: 180px; resize: vertical; line-height: 1.55; }
   html { scroll-behavior: smooth; }
 
   .hero-enter { animation: enter 720ms var(--ease-out) both; animation-delay: var(--d, 0ms); }
-  .plate-img { animation: plateIn 900ms 280ms var(--ease-out) both; }
   @keyframes enter { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
-  @keyframes plateIn { from { clip-path: inset(100% 0 0 0); } to { clip-path: inset(0 0 0 0); } }
 
   @supports (animation-timeline: view()) {
     .rv { animation: rise linear both; animation-timeline: view(); animation-range: entry 5% entry 75%; }
@@ -789,15 +777,11 @@ textarea.inp { min-height: 180px; resize: vertical; line-height: 1.55; }
   .tr-light { animation: sweep 1200ms var(--ease-out) both; }
   .tr-big { animation: bigIn 600ms var(--ease-out) both; }
   @keyframes recede { from { opacity: 1; transform: none; } to { opacity: .1; transform: translateY(-40px); } }
-  @keyframes plateUp { from { transform: none; } to { transform: translateY(-90px); } }
-  @keyframes plateUp2 { from { transform: none; } to { transform: translateY(-160px); } }
 }
 
 @media (min-width: 1080px) and (prefers-reduced-motion: no-preference) {
   @supports (animation-timeline: view()) {
     .tr-list .stack-card { animation: none; }
-    .plate--a { animation: plateUp linear both; animation-timeline: scroll(root); animation-range: 0 110vh; }
-    .plate--b { animation: plateUp2 linear both; animation-timeline: scroll(root); animation-range: 0 110vh; }
   }
 }
 

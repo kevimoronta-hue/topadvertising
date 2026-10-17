@@ -1,16 +1,13 @@
 'use client';
 
-import Image from 'next/image';
 import { useEffect, useState } from 'react';
-import { ART } from '@/data/art';
 import { HERO_MEDIA } from '@/data/site';
 import { track } from '@/lib/analytics';
 import { PrimaryButton, SecondaryButton } from '@/components/ui/Buttons';
 
 /**
- * Three-plane hero: the event loop (back plane), production and brand detail
- * (front plates). Planes drift at different rates with scroll (CSS scroll timeline,
- * no JS per frame). Portrait screens (phones, tablets upright) get the vertical loop,
+ * Full-bleed hero: the event loop behind the title and CTAs; the copy recedes
+ * with scroll (CSS scroll timeline, no JS per frame). Portrait screens (phones, tablets upright) get the vertical loop,
  * landscape screens the 16:9 one, never a crop of the other.
  * The posters are the first frame of each loop, so the video starts without a jump.
  */
@@ -64,20 +61,6 @@ export function HeroVideo() {
         </div>
       </div>
 
-      <div className="hero-plates" aria-hidden="true">
-        <figure className="plate plate--a">
-          <span className="plate-img">
-            <Image src={ART.heroProduction.src} alt="" fill sizes="(min-width: 1080px) 22vw, 44vw" style={{ objectFit: 'cover', objectPosition: ART.heroProduction.focal }} />
-          </span>
-          <figcaption>Producción</figcaption>
-        </figure>
-        <figure className="plate plate--b">
-          <span className="plate-img">
-            <Image src={ART.heroDetail.src} alt="" fill sizes="(min-width: 1080px) 16vw, 44vw" style={{ objectFit: 'cover', objectPosition: ART.heroDetail.focal }} />
-          </span>
-          <figcaption>Detalle</figcaption>
-        </figure>
-      </div>
     </section>
   );
 }

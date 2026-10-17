@@ -8,10 +8,6 @@ import type { ArtImage } from '@/types';
 const art = (src: string, width: number, height: number, alt: string, focal = '50% 50%'): ArtImage => ({ kind: 'art', src, width, height, alt, focal });
 
 export const ART = {
-  heroEvent: art('/images/hero/evento-final-16x9.webp', 2400, 1357, 'Lanzamiento de un vehículo en un espacio de marca con iluminación arquitectónica y público', '60% 50%'),
-  heroEventMobile: art('/images/hero/evento-final-9x16.webp', 1357, 2400, 'Vehículo presentado sobre una plataforma iluminada durante un lanzamiento', '50% 30%'),
-  heroProduction: art('/images/hero/produccion.webp', 1792, 2240, 'Técnicos instalando estructuras e iluminación durante el montaje', '50% 35%'),
-  heroDetail: art('/images/hero/detalle.webp', 1792, 2240, 'Detalle de un mostrador de recepción en latón, nogal y textil', '50% 55%'),
 
   eventos: art('/images/services/eventos-corporativos.webp', 2400, 1357, 'Conferencia corporativa con escenario, pantalla y mesas iluminadas con velas'),
   montajes: art('/images/services/montajes.webp', 2336, 1744, 'Equipo de producción montando un stand de exhibición', '55% 50%'),
